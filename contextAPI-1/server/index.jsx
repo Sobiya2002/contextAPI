@@ -1,19 +1,17 @@
 
 import express from 'express';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 
-import App from './App.jsx';
-import { DataProvider } from './context/DataContext.jsx';
+import App from '../src/App.jsx';
+import { DataProvider } from '../src/context/UserContext.jsx';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const ROOT_DIR = process.cwd()
 
 const app = express();
 
-app.use('/public', express.static(path.join(__dirname, '..', 'public')));
+app.use('/public', express.static(path.join(ROOT_DIR, 'public')));
 
 const API = 'https://jsonplaceholder.typicode.com';
 

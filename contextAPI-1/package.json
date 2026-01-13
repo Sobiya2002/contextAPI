@@ -5,7 +5,7 @@
   
  "scripts": {
     "build:client": "esbuild ./src/entry-client.jsx --bundle --outfile=./public/client.js --platform=browser --format=iife --loader:.jsx=jsx",
-    "build:server": "esbuild ./src/server/index.jsx --bundle --platform=node --format=cjs --outfile=./dist/server.js",
+    "build:server": "esbuild ./server/index.jsx --bundle --platform=node --format=cjs --outfile=./dist/server.js",
     "build": "npm run build:client && npm run build:server",
     "start": "node dist/server.js"
   },
