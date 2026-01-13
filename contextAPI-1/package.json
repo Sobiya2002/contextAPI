@@ -1,0 +1,25 @@
+{
+  "name": "ssr-context-app",
+  "version": "1.0.0",
+  "main": "server/index.js",
+  
+ "scripts": {
+    "build:client": "esbuild ./src/entry-client.jsx --bundle --outfile=./public/client.js --platform=browser --format=iife --loader:.jsx=jsx",
+    "build:server": "esbuild ./src/server/index.jsx --bundle --platform=node --format=cjs --outfile=./dist/server.js",
+    "build": "npm run build:client && npm run build:server",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "esbuild": "^0.24.0"
+  },
+  "keywords": [],
+  "author": "Sobiya2002",
+  "license": "ISC"
+}
