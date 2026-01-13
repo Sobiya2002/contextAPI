@@ -1,21 +1,25 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useUsers } from '../context/UserContext.jsx';
+import { useUsers } from '../context/UserContext';
 
 export default function UsersList() {
-  const { users, isReady, error } = useUsers();
-
-  if (error) return <p style={{ color: 'crimson' }}>Error: {error}</p>;
-  if (!isReady) return <p>Loading users…</p>;
+  const { getUsers } = useUsers();
+  const users = getUsers();
 
   return (
-    <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
-      {users.map((u) => (
-        <li key={u.id} style={{ padding: '8px 0', borderBottom: '1px solid #eee' }}>
-          <Link to={`/users/${u.id}`}>
-            <strong>{u.name}</strong> <span style={{ color: '#666' }}>({u.email})</span>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <>
+      <h1>Users</h1>
+      {users?.length ? (
+        users.map((u) => (
+          <div key={u.id} className="card">
+            <div style={{ fontWeight: 600 }}>{u.name}</div>
+            <div style={{ color: '#555' }}>{u.email}</div>
+            <div><Link to={`/users/${u.id}`}>View details →</Link></div>
+          </div>
+        ))
+      ) : (
+        <p>No users available. (SSR seeds this list.)</p>
+      )}
+    </>
   );
 }
